@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>MPR Kickoff – 7v7 Football Tournaments Madrid</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;0,900;1,700&family=Barlow+Condensed:wght@400;700;900&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --blue:   #3d8fb5;
+    --blue2:  #2e7a9e;
+    --navy:   #1a2744;
+    --navy2:  #111c33;
+    --gold:   #f5c21a;
+    --gold2:  #d9a800;
+    --white:  #ffffff;
+    --muted:  #8a9ab8;
+    --card:   #1e2f50;
+    --border: rgba(61,143,181,0.22);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--navy2); color: var(--white); font-family: 'Barlow', sans-serif; overflow-x: hidden; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 3rem;
+    background: rgba(17,28,51,0.92); backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.75rem; letter-spacing: 3px; text-decoration: none; color: var(--white); }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: .82rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; transition: color .2s; }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta { background: var(--gold); color: var(--navy); padding: .55rem 1.4rem; border-radius: 4px; font-weight: 800; font-size: .82rem; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; transition: background .2s, transform .15s; }
+  .nav-cta:hover { background: var(--gold2); transform: translateY(-1px); }
+
+  .hero {
+    min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 9rem 2rem 5rem; position: relative; overflow: hidden;
+    background: linear-gradient(175deg, #0d1828 0%, #1a2744 50%, #0f1c35 100%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(61,143,181,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(61,143,181,0.07) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-glow { position: absolute; top: 20%; left: 50%; transform: translateX(-50%); width: 600px; height: 400px; background: radial-gradient(ellipse, rgba(61,143,181,0.18) 0%, transparent 70%); pointer-events: none; }
+  .hero-glow2 { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 800px; height: 300px; background: radial-gradient(ellipse, rgba(245,194,26,0.08) 0%, transparent 70%); pointer-events: none; }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: .5rem;
+    background: rgba(245,194,26,0.12); border: 1px solid rgba(245,194,26,0.3); border-radius: 999px;
+    padding: .4rem 1.2rem; font-size: .75rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 2rem; position: relative; z-index: 1;
+    animation: fadeUp .6s ease both;
+  }
+  .dot { width: 7px; height: 7px; background: var(--gold); border-radius: 50%; animation: pulse 1.5s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.3)} }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+
+  h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(4rem, 11vw, 8.5rem); line-height: .93; letter-spacing: 5px; position: relative; z-index: 1; animation: fadeUp .7s .1s ease both; }
+  h1 .blue { color: var(--blue); }
+  h1 .gold  { color: var(--gold); }
+
+  .hero-sub { margin-top: 1.6rem; font-size: 1.1rem; color: var(--muted); max-width: 520px; line-height: 1.7; position: relative; z-index: 1; animation: fadeUp .7s .2s ease both; }
+  .hero-location { margin-top: .8rem; font-size: .9rem; color: var(--blue); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; position: relative; z-index: 1; animation: fadeUp .7s .25s ease both; }
+  .hero-location em { color: var(--muted); font-style: normal; font-weight: 400; letter-spacing: 0; text-transform: none; }
+
+  .hero-actions { margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; position: relative; z-index: 1; animation: fadeUp .7s .3s ease both; }
+  .btn-primary { background: var(--gold); color: var(--navy); padding: .9rem 2.4rem; border-radius: 5px; font-weight: 800; font-size: .95rem; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; border: none; cursor: pointer; transition: background .2s, transform .15s, box-shadow .2s; box-shadow: 0 0 30px rgba(245,194,26,0.25); }
+  .btn-primary:hover { background: var(--gold2); transform: translateY(-2px); box-shadow: 0 0 45px rgba(245,194,26,0.4); }
+  .btn-outline { background: transparent; color: var(--white); padding: .9rem 2.4rem; border-radius: 5px; font-weight: 700; font-size: .95rem; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; border: 1px solid rgba(255,255,255,0.2); cursor: pointer; transition: border-color .2s, color .2s, transform .15s; }
+  .btn-outline:hover { border-color: var(--blue); color: var(--blue); transform: translateY(-2px); }
+
+  .scroll-hint { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: .4rem; font-size: .72rem; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; z-index: 1; animation: fadeUp .7s .5s ease both; }
+  .scroll-arrow { width: 1px; height: 36px; background: linear-gradient(var(--blue), transparent); margin: 0 auto; animation: scrollPulse 1.8s ease infinite; }
+  @keyframes scrollPulse { 0%,100%{opacity:.3;transform:scaleY(.7)} 50%{opacity:1;transform:scaleY(1)} }
+
+  .stats-strip { background: var(--navy); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 2.8rem 3rem; display: grid; grid-template-columns: repeat(4,1fr); text-align: center; }
+  .stat-item { border-right: 1px solid var(--border); padding: 0 1.5rem; }
+  .stat-item:last-child { border-right: none; }
+  .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 3.8rem; line-height: 1; color: var(--gold); }
+  .stat-label { font-size: .75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 2px; margin-top: .3rem; }
+
+  .section-wrap { padding: 6rem 3rem; max-width: 1160px; margin: 0 auto; }
+  .section-tag { font-size: .72rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--blue); margin-bottom: .8rem; display: block; }
+  h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.4rem,4vw,3.5rem); letter-spacing: 2px; line-height: 1.05; margin-bottom: .8rem; }
+  .section-intro { color: var(--muted); font-size: 1rem; max-width: 560px; line-height: 1.75; margin-bottom: 3rem; }
+
+  .steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+  .step-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 2rem 1.8rem; position: relative; overflow: hidden; transition: transform .2s, border-color .2s; }
+  .step-card:hover { transform: translateY(-5px); border-color: var(--blue); }
+  .step-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--blue), var(--gold)); opacity: 0; transition: opacity .2s; }
+  .step-card:hover::before { opacity: 1; }
+  .step-num { font-family: 'Bebas Neue', sans-serif; font-size: 5rem; line-height: 1; color: rgba(61,143,181,0.1); position: absolute; top: .5rem; right: 1rem; }
+  .step-icon { font-size: 2rem; margin-bottom: 1rem; }
+  .step-card h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.25rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; margin-bottom: .6rem; }
+  .step-card p { font-size: .9rem; color: var(--muted); line-height: 1.65; }
+
+  .prizes-bg { background: var(--navy); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .prize-grid { display: grid; grid-template-columns: 1fr 1.35fr 1fr; gap: 1.5rem; align-items: end; }
+  .prize-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; text-align: center; padding: 2.2rem 1.5rem; transition: transform .2s; }
+  .prize-card:hover { transform: translateY(-5px); }
+  .prize-card.gold-card { background: linear-gradient(160deg, #1e2f50 0%, #162040 100%); border-color: var(--gold); padding: 3rem 1.5rem; box-shadow: 0 0 60px rgba(245,194,26,0.12); }
+  .prize-medal { font-size: 2.6rem; margin-bottom: .8rem; }
+  .prize-place { font-size: .72rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-bottom: .5rem; }
+  .prize-amt { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; color: var(--blue); line-height: 1; }
+  .prize-card.gold-card .prize-amt { font-size: 5rem; color: var(--gold); }
+  .prize-note { font-size: .85rem; color: var(--muted); margin-top: .5rem; }
+
+  .format-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .format-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; transition: border-color .2s; }
+  .format-card:hover { border-color: var(--gold); }
+  .format-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+  .format-card h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.2rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; margin-bottom: .9rem; }
+  .flist { list-style: none; }
+  .flist li { font-size: .9rem; color: var(--muted); padding: .45rem 0; display: flex; align-items: flex-start; gap: .7rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .flist li:last-child { border-bottom: none; }
+  .flist li::before { content: '▸'; color: var(--blue); font-size: .8rem; margin-top: .1rem; flex-shrink: 0; }
+
+  .past-bg { background: var(--navy); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .tournament-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+  .t-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: transform .2s, border-color .2s; }
+  .t-card:hover { transform: translateY(-5px); border-color: var(--blue); }
+  .t-card-header { background: linear-gradient(135deg, var(--navy) 0%, #233060 100%); padding: 1.5rem; border-bottom: 1px solid var(--border); position: relative; }
+  .t-edition { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 2px; color: var(--gold); }
+  .t-date { font-size: .78rem; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin-top: .2rem; }
+  .t-badge { position: absolute; top: 1.2rem; right: 1.2rem; background: rgba(245,194,26,0.15); border: 1px solid rgba(245,194,26,0.4); border-radius: 999px; padding: .25rem .7rem; font-size: .7rem; font-weight: 700; color: var(--gold); letter-spacing: 1px; text-transform: uppercase; }
+  .t-card-body { padding: 1.4rem; }
+  .t-row { display: flex; justify-content: space-between; align-items: center; padding: .5rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .t-row:last-child { border-bottom: none; }
+  .t-key { font-size: .78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+  .t-val { font-size: .9rem; font-weight: 700; color: var(--white); }
+  .t-winner { color: var(--gold); }
+
+  .reg-section { background: linear-gradient(135deg, #0f1c35 0%, #1a2744 50%, #0f1c35 100%); border-top: 1px solid var(--border); }
+  .reg-inner { max-width: 680px; margin: 0 auto; text-align: center; padding: 6rem 2rem; }
+  .reg-inner p { color: var(--muted); font-size: 1.05rem; line-height: 1.7; margin-bottom: 2.5rem; }
+  .reg-form { display: flex; flex-direction: column; gap: 1rem; text-align: left; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: .4rem; }
+  label { font-size: .78rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
+  input, select { background: var(--card); border: 1px solid var(--border); color: var(--white); padding: .75rem 1rem; border-radius: 6px; font-family: 'Barlow', sans-serif; font-size: .95rem; outline: none; transition: border-color .2s; width: 100%; }
+  input::placeholder { color: rgba(138,154,184,0.5); }
+  input:focus, select:focus { border-color: var(--blue); }
+  select option { background: var(--navy); }
+  .submit-btn { background: var(--gold); color: var(--navy); padding: 1rem; border-radius: 6px; border: none; cursor: pointer; font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: 2px; transition: background .2s, transform .15s, box-shadow .2s; box-shadow: 0 0 30px rgba(245,194,26,0.2); margin-top: .5rem; width: 100%; }
+  .submit-btn:hover { background: var(--gold2); transform: translateY(-2px); box-shadow: 0 0 45px rgba(245,194,26,0.4); }
+
+  .faq-list { display: flex; flex-direction: column; gap: .8rem; max-width: 720px; }
+  .faq-item { background: var(--card); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+  .faq-q { width: 100%; background: none; border: none; color: var(--white); padding: 1.2rem 1.5rem; text-align: left; cursor: pointer; font-family: 'Barlow', sans-serif; font-size: .95rem; font-weight: 700; display: flex; justify-content: space-between; align-items: center; gap: 1rem; transition: color .2s; }
+  .faq-q:hover { color: var(--gold); }
+  .faq-icon { color: var(--blue); font-size: 1.2rem; transition: transform .3s; flex-shrink: 0; }
+  .faq-a { display: none; padding: 0 1.5rem 1.2rem; font-size: .9rem; color: var(--muted); line-height: 1.7; }
+  .faq-item.open .faq-icon { transform: rotate(45deg); color: var(--gold); }
+  .faq-item.open .faq-a { display: block; }
+
+  footer { background: var(--navy2); border-top: 1px solid var(--border); padding: 3rem; text-align: center; }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 4px; color: var(--white); margin-bottom: .5rem; }
+  .footer-logo span { color: var(--gold); }
+  .footer-tagline { font-size: .85rem; color: var(--muted); margin-bottom: 1.5rem; }
+  .footer-links { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+  .footer-links a { font-size: .8rem; color: var(--muted); text-decoration: none; text-transform: uppercase; letter-spacing: 1px; transition: color .2s; }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-copy { font-size: .75rem; color: rgba(138,154,184,0.5); }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .stats-strip { grid-template-columns: 1fr 1fr; }
+    .stat-item:nth-child(2) { border-right: none; }
+    .steps, .format-grid, .tournament-cards, .prize-grid { grid-template-columns: 1fr; }
+    .prize-card.gold-card { order: -1; }
+    .form-row { grid-template-columns: 1fr; }
+    .section-wrap { padding: 4rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#"><span>MPR</span> KICKOFF</a>
+  <ul class="nav-links">
+    <li><a href="#how">Format</a></li>
+    <li><a href="#prizes">Prizes</a></li>
+    <li><a href="#history">History</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <a class="nav-cta" href="#register">Register Team</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-badge"><div class="dot"></div> Now Accepting — Edition IV</div>
+  <h1><span class="blue">MPR</span><br><span class="gold">KICK</span>OFF</h1>
+  <p class="hero-sub">Madrid's premier 7v7 football tournament. Compete for cash prizes. Prove your squad belongs at the top.</p>
+  <p class="hero-location">📍 Madrid, Spain &nbsp;<em>— Est. 2023</em></p>
+  <div class="hero-actions">
+    <a class="btn-primary" href="#register">⚽ Register Your Team</a>
+    <a class="btn-outline" href="#how">How It Works</a>
+  </div>
+  <div class="scroll-hint"><span>Scroll</span><div class="scroll-arrow"></div></div>
+</section>
+
+<div class="stats-strip">
+  <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">Official Editions</div></div>
+  <div class="stat-item"><div class="stat-num">24</div><div class="stat-label">Teams Competed</div></div>
+  <div class="stat-item"><div class="stat-num">7v7</div><div class="stat-label">Format</div></div>
+  <div class="stat-item"><div class="stat-num" style="color:var(--blue)">€$$</div><div class="stat-label">Cash Prizes Every Edition</div></div>
+</div>
+
+<div id="how">
+  <div class="section-wrap">
+    <span class="section-tag">⚽ How It Works</span>
+    <h2>From Sign-Up to <span style="color:var(--gold)">Champion</span></h2>
+    <p class="section-intro">Three steps stand between your squad and the prize. Each tournament runs as a single high-energy matchday in Madrid.</p>
+    <div class="steps">
+      <div class="step-card"><div class="step-num">01</div><div class="step-icon">📋</div><h3>Register Your Squad</h3><p>Sign up a team of 7–10 players and pay the entry fee to lock in your spot. Only 8 teams per edition — spots go fast.</p></div>
+      <div class="step-card"><div class="step-num">02</div><div class="step-icon">🏟️</div><h3>Group Stage</h3><p>All 8 teams compete in a round-robin group stage. Every goal counts. Top teams advance to the knockout semi-finals.</p></div>
+      <div class="step-card"><div class="step-num">03</div><div class="step-icon">🏆</div><h3>Finals & Cash</h3><p>Win the final and take all the prize money home. It's winner takes all — only the champions get paid.</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="prizes-bg" id="prizes">
+  <div class="section-wrap">
+    <span class="section-tag">💰 Prize Pool</span>
+    <h2>Play for <span style="color:var(--gold)">Real Money</span></h2>
+    <p class="section-intro">The winner takes it all. No consolation prizes — only the champions walk away with cash. Every game matters.</p>
+    <div class="prize-grid" style="display:flex;justify-content:center;">
+      <div class="prize-card gold-card" style="max-width:380px;width:100%"><div class="prize-medal">🥇</div><div class="prize-place">Champions Only</div><div class="prize-amt">💶 CASH</div><div class="prize-note" style="color:var(--muted);margin-top:.8rem">Winner takes all — announced per edition. 2nd and 3rd place receive glory, not cash.</div></div>
+    </div>
+  </div>
+</div>
+
+<div>
+  <div class="section-wrap">
+    <span class="section-tag">📋 Tournament Format</span>
+    <h2>How <span style="color:var(--blue)">We Play</span></h2>
+    <p class="section-intro">Everything you need to prepare your squad for matchday in Madrid.</p>
+    <div class="format-grid">
+      <div class="format-card"><div class="format-icon">⚽</div><h3>Match Rules</h3><ul class="flist"><li>7 players per side on the pitch</li><li>Squad of up to 10 (3 subs allowed)</li><li>20-minute halves — no half-time break</li><li>Offside rules do NOT apply</li><li>No slide tackles — fair play enforced</li><li>Referee decisions are final</li></ul></div>
+      <div class="format-card"><div class="format-icon">🏟️</div><h3>Venue & Logistics</h3><ul class="flist"><li>Held in Madrid — venue confirmed per edition</li><li>All matches on artificial turf</li><li>Arrive 30 minutes before first kickoff</li><li>Matching kit or official jerseys required</li><li>Water and refreshments on site</li><li>Photos and highlights each edition</li></ul></div>
+      <div class="format-card"><div class="format-icon">📊</div><h3>Group Stage Points</h3><ul class="flist"><li>Win = 3 pts · Draw = 1 pt · Loss = 0</li><li>All 8 teams play each other once</li><li>Top 4 advance to semi-finals</li><li>Tiebreaker: GD → Goals For → H2H</li></ul></div>
+      <div class="format-card"><div class="format-icon">⚠️</div><h3>Eligibility</h3><ul class="flist"><li>Open to all amateur and recreational players</li><li>Minimum age: 16 years old</li><li>Entry fee required to confirm spot</li><li>8 teams maximum per edition</li><li>First come, first registered</li></ul></div>
+    </div>
+  </div>
+</div>
+
+<div class="past-bg" id="history">
+  <div class="section-wrap">
+    <span class="section-tag">🏆 Tournament History</span>
+    <h2>Our <span style="color:var(--gold)">3 Editions</span></h2>
+    <p class="section-intro">Since 2025, MPR Kickoff has run three successful tournaments in Madrid — 8 teams each time, battling it out for cash and glory.</p>
+    <div class="tournament-cards">
+      <div class="t-card"><div class="t-card-header"><div class="t-edition">Edition I</div><div class="t-date">Inaugural · 2023</div><div class="t-badge">✓ Done</div></div><div class="t-card-body"><div class="t-row"><span class="t-key">Teams</span><span class="t-val">8</span></div><div class="t-row"><span class="t-key">Format</span><span class="t-val">7v7</span></div><div class="t-row"><span class="t-key">Location</span><span class="t-val">Madrid</span></div><div class="t-row"><span class="t-key">Champions</span><span class="t-val t-winner">🏆 Add your winner</span></div></div></div>
+      <div class="t-card"><div class="t-card-header"><div class="t-edition">Edition II</div><div class="t-date">Second Edition · 2024</div><div class="t-badge">✓ Done</div></div><div class="t-card-body"><div class="t-row"><span class="t-key">Teams</span><span class="t-val">8</span></div><div class="t-row"><span class="t-key">Format</span><span class="t-val">7v7</span></div><div class="t-row"><span class="t-key">Location</span><span class="t-val">Madrid</span></div><div class="t-row"><span class="t-key">Champions</span><span class="t-val t-winner">🏆 Add your winner</span></div></div></div>
+      <div class="t-card"><div class="t-card-header"><div class="t-edition">Edition III</div><div class="t-date">Most Recent · 2025</div><div class="t-badge">✓ Done</div></div><div class="t-card-body"><div class="t-row"><span class="t-key">Teams</span><span class="t-val">8</span></div><div class="t-row"><span class="t-key">Format</span><span class="t-val">7v7</span></div><div class="t-row"><span class="t-key">Location</span><span class="t-val">Madrid</span></div><div class="t-row"><span class="t-key">Champions</span><span class="t-val t-winner">🏆 Add your winner</span></div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="reg-section" id="register">
+  <div class="reg-inner">
+    <span class="section-tag" style="display:block;text-align:center">⚽ Join Edition IV</span>
+    <h2>Register Your <span style="color:var(--gold)">Team</span></h2>
+    <p>Only 8 spots available. Fill in your details and we'll confirm your entry and payment details via WhatsApp or email.</p>
+    <div class="reg-form">
+      <div class="form-row">
+        <div class="form-group"><label>Team Name</label><input type="text" placeholder="e.g. Real Ballers FC"/></div>
+        <div class="form-group"><label>Captain's Name</label><input type="text" placeholder="Your full name"/></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Email</label><input type="email" placeholder="captain@email.com"/></div>
+        <div class="form-group"><label>WhatsApp / Phone</label><input type="tel" placeholder="+34 600 000 000"/></div>
+      </div>
+      <div class="form-group"><label>Squad Size</label><select><option value="">How many players?</option><option>7 players (minimum)</option><option>8 players</option><option>9 players</option><option>10 players (maximum)</option></select></div>
+      <div class="form-group"><label>How did you hear about us?</label><select><option value="">Select an option</option><option>Instagram</option><option>Friend / Word of mouth</option><option>Played in a previous edition</option><option>Other</option></select></div>
+      <div class="form-group" style="background:rgba(61,142,185,0.08);border:1px solid var(--border);border-radius:8px;padding:1.2rem;">
+        <label style="display:flex;align-items:flex-start;gap:.75rem;cursor:pointer;text-transform:none;letter-spacing:0;font-size:.88rem;line-height:1.6;color:var(--off);">
+          <input type="checkbox" id="waiverCheck" style="width:18px;height:18px;margin-top:2px;flex-shrink:0;accent-color:var(--gold);cursor:pointer;"/>
+          <span>On behalf of our entire team, I confirm that all players have read and agree to the <strong style="color:var(--gold)">MPR Kickoff Waiver & Participation Agreement</strong>. We understand that participation involves physical activity and its associated risks, and that MPR Kickoff is not liable for any injuries sustained during the tournament. All players participate at their own risk.</span>
+        </label>
+      </div>
+      <button class="submit-btn" id="regBtn" onclick="handleRegister()">REGISTER MY TEAM →</button>
+    </div>
+  </div>
+</div>
+
+<div id="faq">
+  <div class="section-wrap">
+    <span class="section-tag">❓ FAQ</span>
+    <h2>Common <span style="color:var(--blue)">Questions</span></h2>
+    <p class="section-intro">Everything you need to know before signing up your squad.</p>
+    <div class="faq-list">
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How many players do I need?<span class="faq-icon">+</span></button><div class="faq-a">You need a minimum of 7 players and can register up to 10 (3 substitutes). We recommend 8–9 players for flexibility on the day.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Where are tournaments held?<span class="faq-icon">+</span></button><div class="faq-a">All editions take place in Madrid. The specific venue is confirmed once registration closes and shared with all captains in advance.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What is the entry fee?<span class="faq-icon">+</span></button><div class="faq-a">The entry fee is announced per edition. Get in touch via Instagram or the registration form for current pricing. Payment locks in your spot.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Can players of any nationality join?<span class="faq-icon">+</span></button><div class="faq-a">Absolutely — MPR Kickoff is open to everyone. We've had players from all over Europe. You just need to meet the age requirement (16+) and be in Madrid on the day.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What if a team withdraws last minute?<span class="faq-icon">+</span></button><div class="faq-a">We keep a waitlist of interested teams. If a team drops out, the next on the list gets the spot. Entry fees are non-refundable within 72 hours of the event.</div></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo"><span>MPR</span> KICKOFF</div>
+  <div class="footer-tagline">Madrid's 7v7 Cash Prize Football Tournament · Est. 2025</div>
+  <div class="footer-links">
+    <a href="#how">Format</a>
+    <a href="#prizes">Prizes</a>
+    <a href="#history">History</a>
+    <a href="#register">Register</a>
+    <a href="#faq">FAQ</a>
+    <a href="https://instagram.com" target="_blank">📸 Instagram</a>
+  </div>
+  <div class="footer-copy">© 2026 MPR Kickoff. All rights reserved. Madrid, Spain.</div>
+</footer>
+
+<script>
+  function handleRegister() {
+    const waiver = document.getElementById('waiverCheck');
+    if (!waiver.checked) {
+      waiver.closest('.form-group').style.borderColor = '#e05c5c';
+      waiver.closest('.form-group').style.background = 'rgba(224,92,92,0.08)';
+      alert('⚠️ Your whole team must acknowledge and agree to the waiver before registering.');
+      return;
+    }
+    alert('Thanks for registering! We\'ll be in touch shortly to confirm your spot. ⚽🏆');
+  }
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.step-card, .prize-card, .format-card, .t-card, .faq-item').forEach(el => {
+    el.style.opacity = '0'; el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity .5s ease, transform .5s ease, border-color .2s';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
